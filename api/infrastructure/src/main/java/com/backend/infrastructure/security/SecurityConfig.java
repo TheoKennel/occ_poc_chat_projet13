@@ -87,8 +87,6 @@ public class SecurityConfig {
                 .cors().and().csrf().disable()
                 .authorizeRequests(auth -> auth
                         .antMatchers("/api/auth/login", "/api/auth/register", "/api/auth/refresh-token").permitAll()
-                        .antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
-                        .antMatchers("/swagger-ui.html", "/v2/api-docs").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

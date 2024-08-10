@@ -1,0 +1,16 @@
+<div class="app">
+  <div class="header" fxLayout="row" fxLayoutAlign="space-between center"
+       *ngIf="($isLoggedIn() | async) else notLogged">
+    <img src="/assets/image_your_car_way.png" alt="logo" routerLink="" />
+    <div class="header_right" fxLayoutAlign="space-between center">
+      <span routerLink="chat" class="link">support</span>
+    </div>
+  </div>
+</div>
+<ng-template #notLogged>
+  <div>
+    <img src="/assets/image_your_car_way.png" alt="logo" routerLink=""/>
+  </div>
+</ng-template>
+<router-outlet></router-outlet>
+

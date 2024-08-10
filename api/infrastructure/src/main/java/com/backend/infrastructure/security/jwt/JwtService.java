@@ -57,7 +57,7 @@ public class JwtService {
                     return ResponseEntity.ok()
                             .header(HttpHeaders.SET_COOKIE, cookie.toString())
                             .header(HttpHeaders.SET_COOKIE, jwtRefresh.toString())
-                            .body(new AuthResponse(userDetails.getId(), userDetails.getUserName()));
+                            .body(new AuthResponse(userDetails.getId(), userDetails.getUserName(), userDetails.getRole()));
                 }
         );
     }

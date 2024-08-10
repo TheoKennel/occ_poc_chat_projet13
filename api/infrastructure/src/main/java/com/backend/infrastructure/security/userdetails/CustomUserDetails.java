@@ -16,6 +16,7 @@ public class CustomUserDetails implements UserDetails {
     private final User user;
     private String username;
     private String password;
+    private String role;
 
     public CustomUserDetails(User user) {
         this.user = user;
@@ -33,6 +34,7 @@ public class CustomUserDetails implements UserDetails {
     public String getUserName() {
         return user.getUsername();
     }
+    public String getRole() { return user.getRole(); }
 
     @Override
     public String getPassword() {

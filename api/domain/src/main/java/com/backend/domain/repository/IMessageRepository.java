@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IMessageRepository {
     List<Message> getMessagesByConversationId(Long conversationId);
-    Boolean saveMessage(Message message);
+    void saveMessage(Message message);
 }

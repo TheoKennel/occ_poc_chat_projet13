@@ -1,0 +1,38 @@
+.center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 250px;
+}
+
+.home{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  margin-top: -20px;
+}
+
+.home_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 377px;
+  height: 40px;
+}
+
+.home img {
+  width: 520px;
+  height: 248px;
+  top: 286px;
+  left: 411px;
+  margin-bottom: 20px;
+}
+
+.home_button button {
+  border-radius: 8px;
+  width: 140px;
+  height: 40px;
+  border: 1px solid black;
+}

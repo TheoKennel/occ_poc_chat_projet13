@@ -22,8 +22,12 @@ public class ConversationEntity {
     private Long id;
 
     @ManyToMany
-    @JoinColumn(name = "user_id")
-    private List<UserEntity> user;
+    @JoinTable(
+            name = "Conversation_Users",
+            joinColumns = @JoinColumn(name = "conversation_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<UserEntity> users;
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)

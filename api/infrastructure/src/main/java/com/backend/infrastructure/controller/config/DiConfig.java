@@ -79,8 +79,8 @@ public class DiConfig {
     }
 
     @Bean
-    public SaveMessage saveMessage(IMessageRepository repository) {
-        return  new SaveMessage(repository);
+    public SaveMessage saveMessage(IMessageRepository repository, IConversationRepository conversationRepository) {
+        return  new SaveMessage(repository, conversationRepository);
     }
 
     // CONVERSATION

@@ -5,6 +5,7 @@ import com.backend.domain.models.Message;
 import com.backend.data.models.MessageEntity;
 import com.backend.domain.repository.IMessageRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,20 +22,15 @@ public class MessageRepoImpl implements IMessageRepository {
     }
 
     @Override
+    @Transactional
     public List<Message> getMessagesByConversationId(Long conversationId) {
-        List<MessageEntity> messageEntities = jpaRepository.findAllById(Collections.singleton(conversationId));
+        List<MessageEntity> messageEntities = jpaRepository.findAllByConversationId(conversationId);
         return messageMapper.toDomain(messageEntities);
     }
 
     @Override
-    public Boolean saveMessage(Message message) {
+    public void saveMessage(Message message) {
             MessageEntity messageEntity = messageMapper.toEntity(message);
-            try {
-                jpaRepository.save(messageEntity);
-                return true;
-            } catch (Exception  e) {
-                System.out.println(e);
-                return false;
-        }
+            jpaRepository.save(messageEntity);
     }
 }

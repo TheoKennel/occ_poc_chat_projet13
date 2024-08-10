@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Users")
@@ -37,4 +38,7 @@ public class UserEntity {
 
     @Column(length = 16)
     private String role;
+
+    @ManyToMany(mappedBy = "users")
+    private List<ConversationEntity> conversations;
 }

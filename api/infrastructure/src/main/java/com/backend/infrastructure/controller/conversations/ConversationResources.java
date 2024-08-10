@@ -1,21 +1,18 @@
 package com.backend.infrastructure.controller.conversations;
 
 import com.backend.infrastructure.responses.ConversationResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-@RequestMapping("/api/conversation")
+@RequestMapping("api/conversation")
 public interface ConversationResources {
 
     @GetMapping("/{id}")
-    CompletableFuture<ConversationResponse> getConversation(@RequestBody Long uuid);
+    CompletableFuture<ConversationResponse> getConversation(@PathVariable Long id);
 
-    @GetMapping()
-    CompletableFuture <List<ConversationResponse>> getAllConversation(@RequestBody Long userId);
+    @GetMapping("/all/{userId}")
+    CompletableFuture <List<ConversationResponse>> getAllConversation(@PathVariable Long userId);
 }

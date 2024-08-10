@@ -5,9 +5,10 @@ import com.backend.domain.models.Conversation;
 import com.backend.data.models.ConversationEntity;
 import com.backend.domain.repository.IConversationRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ConversationJpaImpl implements IConversationRepository {
@@ -21,14 +22,20 @@ public class ConversationJpaImpl implements IConversationRepository {
     }
 
     @Override
+    @Transactional
     public List<Conversation> getAllConversations(Long userId) {
-        List<ConversationEntity> conversationEntities = jpaRepository.findAllById(Collections.singleton(userId));
+        List<ConversationEntity> conversationEntities = jpaRepository.findAllByUserId(userId);
         return conversationMapper.toDomain(conversationEntities);
     }
 
     @Override
+    @Transactional
     public Conversation getConversationById(Long id) {
-        ConversationEntity conversation = jpaRepository.getById(id);
-        return conversationMapper.toDomain(conversation);
+        Optional<ConversationEntity> conversation = jpaRepository.findById(id);
+        if (conversation.isPresent()) {
+            return conversationMapper.toDomain(conversation.get());
+        } else {
+            throw new RuntimeException("No conversation found");
+        }
     }
 }

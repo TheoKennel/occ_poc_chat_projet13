@@ -1,18 +1,18 @@
 package com.backend.infrastructure.controller.messages;
 
+import com.backend.infrastructure.requests.MessageRequest;
 import com.backend.infrastructure.responses.ApiResponse;
 import com.backend.infrastructure.responses.MessageResponse;
-import com.backend.domain.models.Message;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-@RequestMapping("api/message")
+@RequestMapping("/api/message")
 public interface MessageResources {
-    @GetMapping("/{id}")
-    CompletableFuture<List<MessageResponse>> getMessages(@RequestBody Long conversationUUID);
+    @GetMapping("/{conversationId}")
+    CompletableFuture<List<MessageResponse>> getMessages(@PathVariable Long conversationId);
 
-    @PostMapping("/save")
-    CompletableFuture<ApiResponse> saveMessage(@RequestBody Message message);
+    @PostMapping("/save/{conversationId}")
+    CompletableFuture<ApiResponse> saveMessage(@RequestBody MessageRequest message, @PathVariable Long conversationId);
 }

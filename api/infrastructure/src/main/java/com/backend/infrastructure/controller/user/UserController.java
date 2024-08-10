@@ -45,7 +45,7 @@ public class  UserController implements UserResource {
         return useCaseExecutor.execute(
                 getUserUseCase,
                 new GetUserUseCase.InputValues(id),
-                (outputValues) -> UserResponse.from(outputValues.user()));
+                outputValues -> UserResponse.from(outputValues.user()));
     }
 
     /**

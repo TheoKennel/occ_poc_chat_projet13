@@ -31,8 +31,8 @@ public class ChatController {
 
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
-    public void sendMessage(Message message) {
-        saveMessage.execute(new SaveMessage.InputValues(message));
+    public void sendMessage(Message message, Long conversationId) {
+        saveMessage.execute(new SaveMessage.InputValues(message, conversationId));
         messagingTemplate.convertAndSend("/topic/" + message.getConversation(), message);
 
     }
