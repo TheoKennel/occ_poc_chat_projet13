@@ -44,7 +44,7 @@ export class LoginComponent {
     this.authService.login(loginRequest).subscribe({
       next: (userInformation) => {
         this.setLocalStorage(userInformation);
-        this.router.navigate(['/article']);
+        this.router.navigate(['/chat']);
       },
       error: (error: HttpErrorResponse) => {
         this.errorMessage = error.message;

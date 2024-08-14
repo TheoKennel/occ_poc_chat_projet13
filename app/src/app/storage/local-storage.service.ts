@@ -25,7 +25,7 @@ export class LocalStorageService {
    * @param key La clé de la valeur à récupérer.
    * @returns La valeur stockée ou null si rien n'est trouvé.
    */
-  getItem(key: string) : string | null {
+  getItem(key: string) : any   {
     return localStorage.getItem(key);
   }
 

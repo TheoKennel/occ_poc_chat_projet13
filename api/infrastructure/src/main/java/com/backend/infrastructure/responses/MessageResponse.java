@@ -22,6 +22,6 @@ public record MessageResponse(
     public static List<MessageResponse> from(List<Message> messageList) {
         return messageList.stream()
                 .map(MessageResponse::from)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

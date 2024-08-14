@@ -1,14 +1,13 @@
 package com.backend.infrastructure.controller.chat_socket;
 
-import com.backend.infrastructure.responses.MessageResponse;
 import com.backend.domain.models.Message;
 import com.backend.domain.use_cases.UseCaseExecutor;
 import com.backend.domain.use_cases.messages.GetMessages;
 import com.backend.domain.use_cases.messages.SaveMessage;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
+import com.backend.infrastructure.responses.MessageResponse;
+import com.corundumstudio.socketio.SocketIOClient;
+import com.corundumstudio.socketio.annotation.OnEvent;
+import com.corundumstudio.socketio.SocketIOServer;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -20,37 +19,38 @@ public class ChatController {
     private final SaveMessage saveMessage;
     private final GetMessages getMessages;
     private final UseCaseExecutor useCaseExecutor;
-    private final SimpMessagingTemplate messagingTemplate;
+    private final SocketIOServer socketIOServer;
 
-    public ChatController(SaveMessage saveMessage, GetMessages getMessages, UseCaseExecutor useCaseExecutor, SimpMessagingTemplate messagingTemplate) {
+    public ChatController(SaveMessage saveMessage, GetMessages getMessages, UseCaseExecutor useCaseExecutor, SocketIOServer socketIOServer) {
         this.saveMessage = saveMessage;
         this.getMessages = getMessages;
         this.useCaseExecutor = useCaseExecutor;
-        this.messagingTemplate = messagingTemplate;
+        this.socketIOServer = socketIOServer;
     }
 
-    @MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/public")
-    public void sendMessage(Message message, Long conversationId) {
+    @OnEvent("sendMessage")
+    public void sendMessage(SocketIOClient client, Message message, Long conversationId) {
         saveMessage.execute(new SaveMessage.InputValues(message, conversationId));
-        messagingTemplate.convertAndSend("/topic/" + message.getConversation(), message);
-
+        socketIOServer.getRoomOperations(message.getConversation().toString()).sendEvent("message", message);
     }
 
-    @MessageMapping("/chat.addUser")
-    @SendTo("/topic/public")
-    public void addUser(Message message) {
-        messagingTemplate.convertAndSend("/topic/" + message.getConversation(), message);
-    }
-
-    @MessageMapping("/chat.loadMessages/{conversationId}")
-    @SendTo("/topic/{conversationId}")
-    public List<MessageResponse> loadMessages(@DestinationVariable Long conversationId) {
-        CompletableFuture<List<MessageResponse>> messageList =  useCaseExecutor.execute(
+    @OnEvent("loadMessages")
+    public void loadMessages(SocketIOClient client, Long conversationId) {
+        CompletableFuture<List<MessageResponse>> messageList = useCaseExecutor.execute(
                 getMessages,
                 new GetMessages.InputValues(conversationId),
                 outputValues -> MessageResponse.from(outputValues.messages())
         );
-        return messageList.join();
+        client.sendEvent("message", messageList.join());
+    }
+
+    @OnEvent("join")
+    public void joinRoom(SocketIOClient client, Long conversationId) {
+        client.joinRoom(conversationId.toString());
+    }
+
+    @OnEvent("leave")
+    public void leaveRoom(SocketIOClient client, Long conversationId) {
+        client.leaveRoom(conversationId.toString());
     }
 }

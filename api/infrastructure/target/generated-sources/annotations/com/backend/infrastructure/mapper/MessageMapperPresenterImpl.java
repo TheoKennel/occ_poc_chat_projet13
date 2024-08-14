@@ -9,23 +9,23 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-08-10T09:31:04+0200",
-    comments = "version: 1.5.1.Final, compiler: javac, environment: Java 17.0.7 (Oracle Corporation)"
+    date = "2024-08-13T19:17:26+0200",
+    comments = "version: 1.5.1.Final, compiler: javac, environment: Java 17.0.9 (Amazon.com Inc.)"
 )
 @Component
 public class MessageMapperPresenterImpl implements MessageMapperPresenter {
 
     @Override
-    public Message toDomain(MessageRequest arg0) {
-        if ( arg0 == null ) {
+    public Message toDomain(MessageRequest dto) {
+        if ( dto == null ) {
             return null;
         }
 
         String sender = null;
         String message = null;
 
-        sender = arg0.sender();
-        message = arg0.message();
+        sender = dto.sender();
+        message = dto.message();
 
         Long id = null;
         Conversation conversation = null;
@@ -37,16 +37,16 @@ public class MessageMapperPresenterImpl implements MessageMapperPresenter {
     }
 
     @Override
-    public MessageRequest toPresenter(Message arg0) {
-        if ( arg0 == null ) {
+    public MessageRequest toPresenter(Message entity) {
+        if ( entity == null ) {
             return null;
         }
 
         String message = null;
         String sender = null;
 
-        message = arg0.getMessage();
-        sender = arg0.getSender();
+        message = entity.getMessage();
+        sender = entity.getSender();
 
         MessageRequest messageRequest = new MessageRequest( message, sender );
 

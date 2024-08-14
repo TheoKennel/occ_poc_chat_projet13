@@ -1,11 +1,11 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {ConversationsComponent} from "./conversations/conversations.component";
-import {MessagesComponent} from "./messages/messages.component";
+import {MessageComponent} from "./messages/message.component";
 
 const routes : Routes = [
   { title: 'Conversation', path: 'conversations', component : ConversationsComponent },
-  { title: 'Message', path: 'message', component : MessagesComponent },
+  { title: 'Message', path: 'message', component : MessageComponent },
   { path: '', redirectTo: 'conversations', pathMatch: 'full' }
 
 ]

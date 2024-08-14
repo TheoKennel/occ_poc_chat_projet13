@@ -1,1 +1,26 @@
-<p>conversations works!</p>
+<div class="container">
+  <div class="sidebar">
+    <h3>Conversations</h3>
+    <ul class="conversation-list">
+      <li
+        *ngFor="let conversation of conversations"
+        (click)="selectConversation(conversation)"
+        [class.selected]="selectedConversation?.id === conversation.id"
+      >
+        Conversation avec {{ getOtherUser(conversation) }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="chat-window">
+    <div *ngIf="!selectedConversation" class="no-conversation">
+      <p>Sélectionner votre conversation</p>
+    </div>
+    <div *ngIf="selectedConversation" class="messages">
+      <app-message
+        [messages]="messages"
+        [conversationId]="selectedConversation.id">
+      </app-message>
+    </div>
+  </div>
+</div>
