@@ -4,6 +4,7 @@ import com.backend.data.models.ConversationEntity;
 import com.backend.data.models.UserEntity;
 import com.backend.domain.models.Conversation;
 import com.backend.domain.models.User;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -11,8 +12,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-08-13T19:17:23+0200",
-    comments = "version: 1.5.1.Final, compiler: javac, environment: Java 17.0.9 (Amazon.com Inc.)"
+    date = "2024-08-16T17:25:14+0200",
+    comments = "version: 1.5.1.Final, compiler: javac, environment: Java 17.0.7 (Oracle Corporation)"
 )
 @Component
 public class ConversationMapperImpl implements ConversationMapper {
@@ -23,12 +24,17 @@ public class ConversationMapperImpl implements ConversationMapper {
             return null;
         }
 
-        Conversation conversation = new Conversation();
+        Long id = null;
+        List<User> users = null;
+        String status = null;
+        LocalDateTime createdAt = null;
 
-        conversation.setId( entity.getId() );
-        conversation.setUsers( userEntityListToUserList( entity.getUsers() ) );
-        conversation.setStatus( entity.getStatus() );
-        conversation.setCreatedAt( entity.getCreatedAt() );
+        id = entity.getId();
+        users = userEntityListToUserList( entity.getUsers() );
+        status = entity.getStatus();
+        createdAt = entity.getCreatedAt();
+
+        Conversation conversation = new Conversation( id, users, status, createdAt );
 
         return conversation;
     }
@@ -70,7 +76,7 @@ public class ConversationMapperImpl implements ConversationMapper {
         ConversationEntity conversationEntity = new ConversationEntity();
 
         conversationEntity.setId( domain.getId() );
-        conversationEntity.setCreatedAt( domain.getCreatedAt() );
+        conversationEntity.setUsers( userListToUserEntityList( domain.getUsers() ) );
         conversationEntity.setStatus( domain.getStatus() );
 
         return conversationEntity;
@@ -102,6 +108,37 @@ public class ConversationMapperImpl implements ConversationMapper {
         List<User> list1 = new ArrayList<User>( list.size() );
         for ( UserEntity userEntity : list ) {
             list1.add( userEntityToUser( userEntity ) );
+        }
+
+        return list1;
+    }
+
+    protected UserEntity userToUserEntity(User user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setId( user.getId() );
+        userEntity.setUsername( user.getUsername() );
+        userEntity.setEmail( user.getEmail() );
+        userEntity.setPassword( user.getPassword() );
+        userEntity.setPhone( user.getPhone() );
+        userEntity.setAddress( user.getAddress() );
+        userEntity.setRole( user.getRole() );
+
+        return userEntity;
+    }
+
+    protected List<UserEntity> userListToUserEntityList(List<User> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<UserEntity> list1 = new ArrayList<UserEntity>( list.size() );
+        for ( User user : list ) {
+            list1.add( userToUserEntity( user ) );
         }
 
         return list1;

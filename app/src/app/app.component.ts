@@ -29,7 +29,6 @@ export class AppComponent implements  OnDestroy {
 
 
   public $isLoggedIn(): Observable<boolean> {
-    console.log(this.localStorage.getItem('isLogged'))
     return of(this.localStorage.getItem('isLogged') === 'false');
   }
 }

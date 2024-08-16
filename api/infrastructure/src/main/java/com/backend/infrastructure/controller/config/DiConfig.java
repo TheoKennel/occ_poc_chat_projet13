@@ -5,6 +5,7 @@ import com.backend.domain.repository.IMessageRepository;
 import com.backend.domain.repository.IRefreshTokenRepository;
 import com.backend.domain.repository.IUserRepository;
 import com.backend.domain.use_cases.auth.IPasswordEncodeFinal;
+import com.backend.domain.use_cases.conversations.CreateConversation;
 import com.backend.domain.use_cases.conversations.GetConversationById;
 import com.backend.domain.use_cases.conversations.GetConversations;
 import com.backend.domain.use_cases.messages.GetMessages;
@@ -92,5 +93,13 @@ public class DiConfig {
     @Bean
     public GetConversations getConversations(IConversationRepository repository) {
         return new GetConversations(repository);
+    }
+
+    @Bean
+    public CreateConversation createConversation(
+                                                 IConversationRepository repository,
+                                                 IUserRepository userRepository,
+                                                 IMessageRepository messageRepository) {
+        return new CreateConversation(repository, messageRepository, userRepository);
     }
 }

@@ -24,10 +24,6 @@ export class ConversationsComponent implements OnInit {
   ngOnInit(): void {
     const userId: number = this.localStorage.getItem('id');
     this.loadConversations(userId);
-
-    this.webSocketService.getMessages().subscribe(messages => {
-      this.messages = messages;
-    });
   }
 
   loadConversations(userId: number): void {
@@ -43,6 +39,20 @@ export class ConversationsComponent implements OnInit {
 
     this.selectedConversation = conversation;
     this.webSocketService.joinConversation(conversation.id);
+    console.log(conversation.id)
+    this.webSocketService.getMessages().subscribe(messages => {
+      this.messages = messages;
+    });
+  }
+
+  startNewConversation(): void {
+    const userId: number = this.localStorage.getItem('id');
+    this.conversationService.startConversation(userId).subscribe(conversationId => {
+      this.loadConversations(userId);
+      this.conversationService.getConversation(conversationId).subscribe(conversation => {
+        this.selectConversation(conversation);
+      });
+    });
   }
 
   getOtherUser(conversation: ConversationInterface): string {

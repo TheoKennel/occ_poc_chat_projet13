@@ -11,4 +11,5 @@ public interface IUserRepository {
     User save(User entity);
     void delete(User entity);
     Optional<User> findByEmail(String email);
+    Optional<User> getAdminUser();
 }

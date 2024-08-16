@@ -5,6 +5,7 @@ import com.backend.domain.models.User;
 import com.backend.data.models.UserEntity;
 import com.backend.domain.repository.IUserRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -73,5 +74,11 @@ public class UserRepoImpl implements IUserRepository {
     @Override
     public Optional<User> findByEmail(String email) {
         return jpaUserRepository.findByEmail(email).map(userDetailsMapper::toDomain);
+    }
+
+    @Override
+    @Transactional
+    public Optional<User> getAdminUser() {
+        return jpaUserRepository.findByRole("ADMIN").map(userDetailsMapper::toDomain);
     }
 }

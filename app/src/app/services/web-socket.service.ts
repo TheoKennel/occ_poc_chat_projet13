@@ -13,9 +13,7 @@ export class WebSocketService {
   private messagesSubject: BehaviorSubject<MessageInterface[]> = new BehaviorSubject<MessageInterface[]>([]);
 
   constructor() {
-    this.socket = io('http://localhost:8080', {
-      transports: ['websocket'],
-    });
+    this.socket = io('http://127.0.0.25:8085');
 
     this.socket.on('message', (message: MessageInterface) => {
       const currentMessages = this.messagesSubject.getValue();
@@ -34,6 +32,7 @@ export class WebSocketService {
   public joinConversation(conversationId: number): void {
     this.socket.emit('join', conversationId);
     this.socket.emit('loadMessages', conversationId);
+    console.log('inside join')
   }
 
   public sendMessage(conversationId: number, content: string, user: string): void {
@@ -43,9 +42,11 @@ export class WebSocketService {
       sender: user
     };
     this.socket.emit('sendMessage', message);
+    console.log('did send message')
   }
 
   public leaveConversation(conversationId: number): void {
     this.socket.emit('leave', conversationId);
+    console.log('inside leave')
   }
 }

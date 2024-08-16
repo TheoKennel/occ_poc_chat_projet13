@@ -2,6 +2,7 @@ com\backend\infrastructure\controller\payments\PaymentController.class
 com\backend\infrastructure\mapper\UserUpdateMapperImpl.class
 com\backend\infrastructure\responses\UserResponse.class
 com\backend\infrastructure\controller\conversations\ConversationResources.class
+com\backend\infrastructure\controller\chat_socket\ChatSocketHandler.class
 com\backend\infrastructure\security\use_cases\AuthenticateUserUseCase$InputValues.class
 com\backend\infrastructure\controller\chat_socket\ChatController.class
 com\backend\infrastructure\controller\messages\MessageResources.class
@@ -21,12 +22,14 @@ com\backend\infrastructure\Main.class
 com\backend\infrastructure\controller\user\UserResource.class
 com\backend\infrastructure\security\jwt\CookieJwt.class
 com\backend\infrastructure\controller\user\AuthResource.class
+com\backend\infrastructure\controller\config\socket\SocketIOConfig.class
 com\backend\infrastructure\responses\MessageResponse.class
 com\backend\infrastructure\responses\ApiResponse.class
 com\backend\infrastructure\mapper\UserUpdateMapper.class
 com\backend\infrastructure\controller\bookings\BookingController.class
 com\backend\infrastructure\controller\user\AuthController.class
 com\backend\infrastructure\controller\bookings\BookingResources.class
+com\backend\infrastructure\controller\config\socket\SocketIOInitializer.class
 com\backend\infrastructure\security\jwt\JwtTokenFilter.class
 com\backend\infrastructure\security\use_cases\AuthenticateUserUseCase$OutputValues.class
 com\backend\infrastructure\responses\AuthResponse.class

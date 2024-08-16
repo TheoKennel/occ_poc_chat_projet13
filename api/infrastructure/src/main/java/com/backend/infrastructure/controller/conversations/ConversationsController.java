@@ -1,12 +1,12 @@
 package com.backend.infrastructure.controller.conversations;
 
+import com.backend.domain.use_cases.conversations.CreateConversation;
 import com.backend.infrastructure.responses.ConversationResponse;
 import com.backend.domain.use_cases.UseCaseExecutor;
 import com.backend.domain.use_cases.conversations.GetConversationById;
 import com.backend.domain.use_cases.conversations.GetConversations;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -16,14 +16,16 @@ public class ConversationsController implements ConversationResources {
     private final UseCaseExecutor useCaseExecutor;
     private final GetConversations getConversations;
     private final GetConversationById getConversationById;
+    private final CreateConversation createConversation;
 
-    public ConversationsController(
-                                    UseCaseExecutor useCaseExecutor,
+    public ConversationsController(UseCaseExecutor useCaseExecutor,
                                    GetConversations getConversations,
-                                   GetConversationById getConversationById) {
+                                   GetConversationById getConversationById,
+                                   CreateConversation createConversation) {
         this.useCaseExecutor = useCaseExecutor;
         this.getConversations = getConversations;
         this.getConversationById = getConversationById;
+        this.createConversation = createConversation;
     }
 
     @Override
@@ -41,5 +43,10 @@ public class ConversationsController implements ConversationResources {
                 new GetConversations.InputValues(userId),
                 outputValues -> ConversationResponse.from(outputValues.conversations())
         );
+    }
+
+    @Override
+    public CompletableFuture<Long> createConversation(CreateConversation.InputValues inputValues) {
+        return CompletableFuture.supplyAsync(() -> createConversation.execute(inputValues).conversationId());
     }
 }

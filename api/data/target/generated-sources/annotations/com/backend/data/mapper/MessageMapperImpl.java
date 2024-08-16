@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-08-13T19:17:24+0200",
-    comments = "version: 1.5.1.Final, compiler: javac, environment: Java 17.0.9 (Amazon.com Inc.)"
+    date = "2024-08-16T17:25:15+0200",
+    comments = "version: 1.5.1.Final, compiler: javac, environment: Java 17.0.7 (Oracle Corporation)"
 )
 @Component
 public class MessageMapperImpl implements MessageMapper {
@@ -123,12 +123,17 @@ public class MessageMapperImpl implements MessageMapper {
             return null;
         }
 
-        Conversation conversation = new Conversation();
+        Long id = null;
+        List<User> users = null;
+        String status = null;
+        LocalDateTime createdAt = null;
 
-        conversation.setId( conversationEntity.getId() );
-        conversation.setUsers( userEntityListToUserList( conversationEntity.getUsers() ) );
-        conversation.setStatus( conversationEntity.getStatus() );
-        conversation.setCreatedAt( conversationEntity.getCreatedAt() );
+        id = conversationEntity.getId();
+        users = userEntityListToUserList( conversationEntity.getUsers() );
+        status = conversationEntity.getStatus();
+        createdAt = conversationEntity.getCreatedAt();
+
+        Conversation conversation = new Conversation( id, users, status, createdAt );
 
         return conversation;
     }

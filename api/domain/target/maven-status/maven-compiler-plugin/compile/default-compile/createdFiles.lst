@@ -22,6 +22,7 @@ com\backend\domain\use_cases\user\RegisterUseCase$OutputValues.class
 com\backend\domain\use_cases\user\token\CreateRefreshTokenUseCase.class
 com\backend\domain\use_cases\user\token\UpdateRefreshTokenUseCase.class
 com\backend\domain\use_cases\auth\IPasswordEncodeFinal.class
+com\backend\domain\use_cases\conversations\CreateConversation.class
 com\backend\domain\use_cases\conversations\GetConversationById$InputValues.class
 com\backend\domain\use_cases\user\LogoutUserUseCase.class
 com\backend\domain\models\Conversation.class
@@ -38,6 +39,7 @@ com\backend\domain\use_cases\messages\GetMessages$InputValues.class
 com\backend\domain\use_cases\user\token\FindByTokenUseCase$OutputValues.class
 com\backend\domain\use_cases\user\token\UpdateRefreshTokenUseCase$InputValues.class
 com\backend\domain\use_cases\user\token\VerifyTokenExpirationUseCase$InputValues.class
+com\backend\domain\use_cases\conversations\CreateConversation$OutputValues.class
 com\backend\domain\use_cases\conversations\GetConversationById.class
 com\backend\domain\use_cases\user\token\CreateRefreshTokenUseCase$InputValues.class
 com\backend\domain\repository\IUserRepository.class
@@ -49,6 +51,7 @@ com\backend\domain\use_cases\UseCase$InputRequest.class
 com\backend\domain\use_cases\user\DeleteUserUseCase.class
 com\backend\domain\use_cases\user\token\UpdateRefreshTokenUseCase$OutputValues.class
 com\backend\domain\use_cases\auth\SignInRequest.class
+com\backend\domain\use_cases\conversations\CreateConversation$InputValues.class
 com\backend\domain\repository\IRefreshTokenRepository.class
 com\backend\domain\use_cases\user\token\DeleteRefreshTokenUseCase.class
 com\backend\domain\use_cases\UseCase.class

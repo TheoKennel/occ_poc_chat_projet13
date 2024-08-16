@@ -1,3 +1,4 @@
+D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\controller\config\socket\SocketIOConfig.java
 D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\controller\chat_socket\WebSocketConfig.java
 D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\responses\ConversationResponse.java
 D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\controller\user\UserController.java
@@ -28,8 +29,10 @@ D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet1
 D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\UseCaseExecutorImpl.java
 D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\controller\payments\PaymentController.java
 D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\controller\user\AuthController.java
+D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\controller\chat_socket\ChatSocketHandler.java
 D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\security\userdetails\CustomUserDetailsService.java
 D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\security\userdetails\CustomUserDetails.java
+D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\controller\config\socket\SocketIOInitializer.java
 D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\security\use_cases\AuthenticateUserUseCase.java
 D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\controller\bookings\BookingResources.java
 D:\Projet Dev\Cours_Projet\Projet_Open_Classrooms\projet_13\occ_poc_chat_projet13\api\infrastructure\src\main\java\com\backend\infrastructure\responses\ApiResponse.java

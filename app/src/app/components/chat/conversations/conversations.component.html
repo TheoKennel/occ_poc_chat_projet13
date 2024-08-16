@@ -1,6 +1,7 @@
 <div class="container">
   <div class="sidebar">
     <h3>Conversations</h3>
+    <button (click)="startNewConversation()">Nouvelle Conversation</button>
     <ul class="conversation-list">
       <li
         *ngFor="let conversation of conversations"

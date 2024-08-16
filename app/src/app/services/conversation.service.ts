@@ -7,15 +7,19 @@ import { Observable } from 'rxjs';
 })
 export class ConversationService {
 
-  private apiUrl = 'http://localhost:8080/api/conversation';
+  private apiUrl = 'http://localhost:3001/api/conversation';
 
   constructor(private http: HttpClient) { }
 
   public getAllConversations(userId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/all/${userId}`);
+    return this.http.get(`${this.apiUrl}/all/${userId}`, {withCredentials: true} );
   }
 
   public getConversation(conversationId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${conversationId}`);
+    return this.http.get(`${this.apiUrl}/${conversationId}`, {withCredentials: true});
+  }
+
+  public startConversation(userId: number): Observable<number> {
+    return this.http.post<number>(`${this.apiUrl}/create`, { initiatorId: userId }, { withCredentials: true });
   }
 }

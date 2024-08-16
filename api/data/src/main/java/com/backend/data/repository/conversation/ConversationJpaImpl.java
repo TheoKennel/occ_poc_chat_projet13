@@ -38,4 +38,11 @@ public class ConversationJpaImpl implements IConversationRepository {
             throw new RuntimeException("No conversation found");
         }
     }
+
+    @Override
+    public void saveConversation(Conversation conversation) {
+        ConversationEntity conversationEntity = conversationMapper.toEntity(conversation);
+        jpaRepository.save(conversationEntity);
+        jpaRepository.flush();
+    }
 }

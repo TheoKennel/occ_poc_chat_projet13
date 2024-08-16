@@ -8,6 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface ConversationMapper  extends EntMapper<Conversation, ConversationEntity> {
     @Override
-    @Mapping(target = "users", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
     ConversationEntity toEntity(Conversation domain);
 }

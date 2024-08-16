@@ -6,4 +6,5 @@ import java.util.List;
 public interface IConversationRepository {
     List<Conversation> getAllConversations(Long userId);
     Conversation getConversationById(Long id);
+    void saveConversation(Conversation conversation);
 }
