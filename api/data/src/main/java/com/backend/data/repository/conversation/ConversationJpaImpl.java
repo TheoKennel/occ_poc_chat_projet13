@@ -42,7 +42,7 @@ public class ConversationJpaImpl implements IConversationRepository {
     @Override
     public void saveConversation(Conversation conversation) {
         ConversationEntity conversationEntity = conversationMapper.toEntity(conversation);
-        jpaRepository.save(conversationEntity);
+        jpaRepository.saveAndFlush(conversationEntity);
         jpaRepository.flush();
     }
 }

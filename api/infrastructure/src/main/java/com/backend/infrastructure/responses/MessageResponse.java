@@ -1,20 +1,18 @@
 package com.backend.infrastructure.responses;
 
 import com.backend.domain.models.Message;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 public record MessageResponse(
         String message,
         String sender,
-        LocalDateTime sendAt
+        Long conversationId
 ) {
     public static MessageResponse from(Message message) {
         return new MessageResponse(
                 message.getMessage(),
                 message.getSender(),
-                message.getSendAt()
+                message.getConversation().getId()
         );
     }
 

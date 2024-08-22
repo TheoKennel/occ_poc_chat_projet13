@@ -4,5 +4,6 @@ import javax.validation.constraints.NotNull;
 
 public record MessageRequest(
         @NotNull String message,
-        @NotNull String sender
+        @NotNull String sender,
+        @NotNull Long conversationId
         ) { }

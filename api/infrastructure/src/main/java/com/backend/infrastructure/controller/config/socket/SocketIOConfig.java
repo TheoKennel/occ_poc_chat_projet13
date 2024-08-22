@@ -1,6 +1,7 @@
 package com.backend.infrastructure.controller.config.socket;
 
 import com.corundumstudio.socketio.SocketIOServer;
+import com.corundumstudio.socketio.protocol.JsonSupport;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

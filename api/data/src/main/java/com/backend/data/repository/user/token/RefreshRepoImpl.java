@@ -61,6 +61,7 @@ public class RefreshRepoImpl implements IRefreshTokenRepository {
     @Override
     public String save(RefreshToken refreshToken) {
         RefreshTokenEntity refreshTokenEntity = refreshMapper.toEntity(refreshToken);
+        System.out.println("Refresh token entity" +  refreshTokenEntity.toString());
         repository.save(refreshTokenEntity);
         return refreshTokenEntity.getToken();
     }

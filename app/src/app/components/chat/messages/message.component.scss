@@ -1,32 +1,44 @@
 .messages {
-  flex-grow: 1;
   overflow-y: auto;
-  padding-bottom: 10px;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .messages .me {
-  text-align: right;
+  text-align: left;
   margin: 10px 0;
   padding: 10px;
   background-color: #d1ffd6;
   border-radius: 10px;
   max-width: 60%;
-  margin-left: auto;
+  margin-right: auto;
+  align-self: flex-start;
 }
 
 .messages .other {
-  text-align: left;
+  text-align: right;
   margin: 10px 0;
   padding: 10px;
   background-color: #f1f1f1;
   border-radius: 10px;
   max-width: 60%;
-  margin-right: auto;
+  margin-left: auto;
+  align-self: flex-end;
+}
+
+.message-default {
+  text-align: center;
+  color: black;
+  width: 100%;
 }
 
 .message-input {
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 .message-input input {

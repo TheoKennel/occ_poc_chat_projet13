@@ -1,9 +1,6 @@
 package com.backend.infrastructure.controller.config.socket;
 
-import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
-import com.corundumstudio.socketio.listener.ConnectListener;
-import com.corundumstudio.socketio.listener.DisconnectListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,20 +19,14 @@ public class SocketIOInitializer {
 
     @PostConstruct
     public void startServer() {
-        socketIOServer.addConnectListener(new ConnectListener() {
-            @Override
-            public void onConnect(SocketIOClient client) {
-                System.out.println("Client connected: " + client.getSessionId());
-            }
-        });
+        socketIOServer.addConnectListener(client -> System.out.println("Client connected: " + client.getSessionId()));
 
-        socketIOServer.addDisconnectListener(new DisconnectListener() {
-            @Override
-            public void onDisconnect(SocketIOClient client) {
-                System.out.println("Client disconnected: " + client.getSessionId());
-            }
-        });
+        socketIOServer.addDisconnectListener(client -> System.out.println("Client disconnected: " + client.getSessionId()));
         socketIOServer.start();
+    }
+
+    public SocketIOServer getSocket() {
+        return this.socketIOServer;
     }
 
     @PreDestroy

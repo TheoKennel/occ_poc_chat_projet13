@@ -31,7 +31,7 @@ public class CreateRefreshTokenUseCase extends UseCase<CreateRefreshTokenUseCase
     public OutputValues execute(InputValues input) {
         User user = userRepository.findById(input.id).orElseThrow(() ->
                 new IllegalArgumentException("User do not exist"));
-
+        repository.deleteByUserId(input.id);
         RefreshToken newRefreshToken = new RefreshToken(
                 null,
                 user,

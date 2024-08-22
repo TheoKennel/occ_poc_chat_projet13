@@ -40,17 +40,6 @@ public class CreateConversation extends UseCase<CreateConversation.InputValues, 
             );
             conversationRepository.saveConversation(conversation);
 
-
-            Message initialMessage = new Message(
-                    null,
-                    conversation,
-                    initiator.getUsername(),
-                    "Conversation started",
-                    LocalDateTime.now()
-            );
-
-            messageRepository.saveMessage(initialMessage);
-
             return new OutputValues(conversation.getId());
         } catch (Exception e) {
             throw new IllegalArgumentException("An error occurred while creating the conversation", e);

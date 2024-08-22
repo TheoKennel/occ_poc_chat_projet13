@@ -25,6 +25,5 @@ public class ChatSocketHandler {
         logger.debug("Client remote address: {}", client.getRemoteAddress());
         System.out.println("Client disconnected: " + client.getSessionId());
     }
-
 }
 

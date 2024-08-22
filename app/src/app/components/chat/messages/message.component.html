@@ -1,4 +1,8 @@
 <div class="messages">
+  <div *ngIf="messages.length === 0" class="message-default">
+    <p>Envoyé un message au service client, vous aurez une réponse dans les plus bref delais.</p>
+  </div>
+
   <div *ngFor="let message of messages"
        [class.me]="message.sender === localStorage.getItem('userName')"
        [class.other]="message.sender !== localStorage.getItem('userName')">

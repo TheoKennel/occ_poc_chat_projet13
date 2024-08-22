@@ -6,8 +6,6 @@ import com.backend.data.models.MessageEntity;
 import com.backend.domain.repository.IMessageRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Collections;
 import java.util.List;
 
 @Repository

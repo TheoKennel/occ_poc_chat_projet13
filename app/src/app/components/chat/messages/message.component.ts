@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { WebSocketService } from '../../../services/web-socket.service';
 import { LocalStorageService } from '../../../storage/local-storage.service';
 import { MessageInterface } from '../../../interfaces/message.interface';
@@ -19,6 +19,7 @@ export class MessageComponent {
   ) {}
 
   sendMessage(): void {
+    console.log('message : ', this.messages)
     if (this.newMessage.trim()) {
       const user = this.localStorage.getItem('userName');
       this.webSocketService.sendMessage(this.conversationId, this.newMessage, user);

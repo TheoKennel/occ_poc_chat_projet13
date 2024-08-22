@@ -1,0 +1,497 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.backend.data.repository.conversation.ConversationJpaImpl",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_347208044 { 
+   	label=backend
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1597742141 { 
+   	label=infrastructure
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   AuthenticateUserUseCase989229697[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AuthenticateUserUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   authenticationManager: AuthenticationManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jwtCookie: CookieJwt [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ConversationsController1151366238[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ConversationsController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   createConversation: CreateConversation [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   getConversationById: GetConversationById [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   getConversations: GetConversations [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   useCaseExecutor: UseCaseExecutor [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ createConversation(initiatorId: Long): CompletableFuture&lt;Long&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAllConversation(userId: Long): CompletableFuture&lt;List&lt;ConversationResponse&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getConversation(id: Long): CompletableFuture&lt;ConversationResponse&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_394287778 { 
+   	label=domain
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   CreateConversation388335958[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CreateConversation</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   conversationRepository: IConversationRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   messageRepository: IMessageRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   userRepository: IUserRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CreateRefreshTokenUseCase1587463684[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CreateRefreshTokenUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   repository: IRefreshTokenRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   userRepository: IUserRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+DeleteRefreshTokenUseCase1587463684[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DeleteRefreshTokenUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   repository: IRefreshTokenRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+DeleteUserUseCase2087240655[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DeleteUserUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   userRepository: IUserRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+FindByTokenUseCase1587463684[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FindByTokenUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   repository: IRefreshTokenRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GetConversationById388335958[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GetConversationById</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   repository: IConversationRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GetConversations388335958[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GetConversations</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   repository: IConversationRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GetMessages617262770[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GetMessages</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   repository: IMessageRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GetUserUseCase2087240655[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GetUserUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   userRepository: IUserRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LogoutUserUseCase2087240655[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LogoutUserUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   refreshToken: IRefreshTokenRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RegisterUseCase2087240655[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RegisterUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   passwordEncodeFinal: IPasswordEncodeFinal [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   userRepository: IUserRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+<TR><TD ALIGN="LEFT" >- setSignInRequest(email: String, password: String): OutputValues</TD></TR>
+<TR><TD ALIGN="LEFT" >- validPassword(password: String): Boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SaveMessage617262770[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SaveMessage</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   conversationRepository: IConversationRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   repository: IMessageRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UpdateRefreshTokenUseCase1587463684[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UpdateRefreshTokenUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   repository: IRefreshTokenRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UpdateUserUseCase2087240655[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UpdateUserUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   userRepository: IUserRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+<TR><TD ALIGN="LEFT" >- existByEmail(user: User, id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >- persistAndReturn(user: User, input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UseCase122963400[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UseCase&lt;I extends UseCase.InputValues, O extends UseCase.OutputValues&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: I): O</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+VerifyTokenExpirationUseCase1587463684[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)VerifyTokenExpirationUseCase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   repository: IRefreshTokenRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(input: InputValues): OutputValues</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_835329732 { 
+   	label=data
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   ConversationJpaImpl622927818[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ConversationJpaImpl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   conversationMapper: ConversationMapper [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jpaRepository: ConversationJpaRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getAllConversations(userId: Long): List&lt;Conversation&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getConversationById(id: Long): Conversation</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveConversation(conversation: Conversation)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ConversationMapperImpl1156062398[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ConversationMapperImpl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ toDomain(entity: ConversationEntity): Conversation</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toDomain(dto: List&lt;ConversationEntity&gt;): List&lt;Conversation&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toEntity(entity: List&lt;Conversation&gt;): List&lt;ConversationEntity&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toEntity(domain: Conversation): ConversationEntity</TD></TR>
+<TR><TD ALIGN="LEFT" ># userEntityListToUserList(list: List&lt;UserEntity&gt;): List&lt;User&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" ># userEntityToUser(userEntity: UserEntity): User</TD></TR>
+<TR><TD ALIGN="LEFT" ># userListToUserEntityList(list: List&lt;User&gt;): List&lt;UserEntity&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" ># userToUserEntity(user: User): UserEntity</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MessageMapperImpl1156062398[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MessageMapperImpl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># conversationEntityToConversation(conversationEntity: ConversationEntity): Conversation</TD></TR>
+<TR><TD ALIGN="LEFT" ># conversationToConversationEntity(conversation: Conversation): ConversationEntity</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toDomain(entity: MessageEntity): Message</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toDomain(dto: List&lt;MessageEntity&gt;): List&lt;Message&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toEntity(entity: List&lt;Message&gt;): List&lt;MessageEntity&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toEntity(message: Message): MessageEntity</TD></TR>
+<TR><TD ALIGN="LEFT" ># userEntityListToUserList(list: List&lt;UserEntity&gt;): List&lt;User&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" ># userEntityToUser(userEntity: UserEntity): User</TD></TR>
+<TR><TD ALIGN="LEFT" ># userListToUserEntityList(list: List&lt;User&gt;): List&lt;UserEntity&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" ># userToUserEntity(user: User): UserEntity</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RefreshMapperImpl1156062398[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RefreshMapperImpl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   userDetailsMapper: UserDetailsMapper [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ toDomain(entity: RefreshTokenEntity): RefreshToken</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toDomain(dto: List&lt;RefreshTokenEntity&gt;): List&lt;RefreshToken&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toEntity(domain: RefreshToken): RefreshTokenEntity</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toEntity(entity: List&lt;RefreshToken&gt;): List&lt;RefreshTokenEntity&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UserDetailsMapperImpl1156062398[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UserDetailsMapperImpl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ toDomain(entity: UserEntity): User</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toDomain(dto: List&lt;UserEntity&gt;): List&lt;User&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toEntity(domain: User): UserEntity</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toEntity(entity: List&lt;User&gt;): List&lt;UserEntity&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+ConversationsController1151366238 -> GetConversations388335958[label="getConversations
+[0..1]"];
+CreateConversation388335958 -> ConversationJpaImpl622927818[label="conversationRepository
+[0..1]", arrowhead=none];
+GetConversationById388335958 -> ConversationJpaImpl622927818[label="repository
+[0..1]", arrowhead=none];
+GetConversations388335958 -> ConversationJpaImpl622927818[label="repository
+[0..1]", arrowhead=none];
+SaveMessage617262770 -> ConversationJpaImpl622927818[label="conversationRepository
+[0..1]", arrowhead=none];
+UseCase122963400 -> AuthenticateUserUseCase989229697[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> CreateConversation388335958[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> CreateRefreshTokenUseCase1587463684[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> DeleteRefreshTokenUseCase1587463684[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> DeleteUserUseCase2087240655[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> FindByTokenUseCase1587463684[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> GetConversationById388335958[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> GetConversations388335958[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> GetMessages617262770[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> GetUserUseCase2087240655[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> LogoutUserUseCase2087240655[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> RegisterUseCase2087240655[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> SaveMessage617262770[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> UpdateRefreshTokenUseCase1587463684[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> UpdateUserUseCase2087240655[arrowhead=none, arrowtail=empty, dir=both];
+UseCase122963400 -> VerifyTokenExpirationUseCase1587463684[arrowhead=none, arrowtail=empty, dir=both];
+    
+}
+@enduml

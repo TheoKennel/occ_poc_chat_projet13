@@ -4,10 +4,21 @@
 }
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
   width: 25%;
   background-color: #f5f5f5;
   padding: 20px;
   border-right: 1px solid #ccc;
+}
+
+.conversation_button {
+  display: flex;
+  border: 1px solid #ffffff;
+  background-color: indianred;
+  color: #ffffff;
+  width: 25%;
+  margin-top: 60px;
 }
 
 .conversation-list {
@@ -46,9 +57,10 @@
 }
 
 .messages {
-  flex-grow: 1;
+  height: 100%;
   overflow-y: auto;
   padding-bottom: 10px;
+  justify-content: space-evenly;
 }
 
 .messages .me {

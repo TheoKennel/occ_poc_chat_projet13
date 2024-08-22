@@ -6,6 +6,7 @@ import com.backend.domain.use_cases.UseCaseExecutor;
 import com.backend.domain.use_cases.conversations.GetConversationById;
 import com.backend.domain.use_cases.conversations.GetConversations;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -46,7 +47,12 @@ public class ConversationsController implements ConversationResources {
     }
 
     @Override
-    public CompletableFuture<Long> createConversation(CreateConversation.InputValues inputValues) {
-        return CompletableFuture.supplyAsync(() -> createConversation.execute(inputValues).conversationId());
+    @Transactional
+    public CompletableFuture<Long> createConversation(@PathVariable Long initiatorId) {
+        return useCaseExecutor.execute(
+                createConversation,
+                new CreateConversation.InputValues(initiatorId),
+                CreateConversation.OutputValues::conversationId
+        );
     }
 }

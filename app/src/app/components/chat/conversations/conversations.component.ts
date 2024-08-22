@@ -3,6 +3,8 @@ import { WebSocketService } from '../../../services/web-socket.service';
 import { ConversationService } from '../../../services/conversation.service';
 import { LocalStorageService } from '../../../storage/local-storage.service';
 import { ConversationInterface } from '../../../interfaces/conversation.interface';
+import {MessageInterface} from "../../../interfaces/message.interface";
+import {BehaviorSubject, Subject} from "rxjs";
 
 @Component({
   selector: 'app-conversations',
@@ -13,7 +15,7 @@ export class ConversationsComponent implements OnInit {
 
   conversations: ConversationInterface[] = [];
   selectedConversation: any;
-  messages: any[] = [];
+  messages: MessageInterface[] = [];
 
   constructor(
     private conversationService: ConversationService,
@@ -36,12 +38,12 @@ export class ConversationsComponent implements OnInit {
     if (this.selectedConversation) {
       this.webSocketService.leaveConversation(this.selectedConversation.id);
     }
-
+    this.messages = [];
     this.selectedConversation = conversation;
     this.webSocketService.joinConversation(conversation.id);
-    console.log(conversation.id)
     this.webSocketService.getMessages().subscribe(messages => {
       this.messages = messages;
+      console.log('messages in select conversation : ', this.messages)
     });
   }
 
@@ -58,5 +60,11 @@ export class ConversationsComponent implements OnInit {
   getOtherUser(conversation: ConversationInterface): string {
     const currentUser = this.localStorage.getItem('userName');
     return conversation.users.find(user => user !== currentUser) || 'Unknown';
+  }
+
+  isAdmin(): boolean {
+    const userRole = this.localStorage.getItem('userName');
+    console.log('user', userRole)
+    return userRole === 'admin';
   }
 }

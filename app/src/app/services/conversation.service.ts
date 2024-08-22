@@ -20,6 +20,6 @@ export class ConversationService {
   }
 
   public startConversation(userId: number): Observable<number> {
-    return this.http.post<number>(`${this.apiUrl}/create`, { initiatorId: userId }, { withCredentials: true });
+    return this.http.post<number>(`${this.apiUrl}/create/${userId}`, {}, { withCredentials: true });
   }
 }
