@@ -1,27 +1,34 @@
-# App
+# Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4.
+![Angular Logo](https://angular.io/assets/images/logos/angular/angular.png)
 
-## Development server
+## Prérequis
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Ce projet nécessite **Node.js** et **npm**. Assurez-vous qu'ils sont installés sur votre pc.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Pour installer et démarrer le projet, suivez les étapes ci-dessous :
 
-## Build
+1. Cloner le dépôt :
+    ```bash
+    git clone https://github.com/TheoKennel/Developpez-une-application-full-stack-complete.git
+    cd front
+    ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Installer les dépendances :
+    ```bash
+    npm install
+    ```
 
-## Running unit tests
+## Utilisation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Démarrer le front :
+    ```bash
+    npm start
+    ```
 
-## Running end-to-end tests
+## Architecture
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Le projet suit une architecture en **component**. Il utilise un **local storage** ainsi qu'un **interceptor** pour les JWT / refresh token.
+Pour le chat, il communique via websocket en tant que client et le api en tant que serveur.
