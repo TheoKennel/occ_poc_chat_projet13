@@ -10,7 +10,7 @@ Ce projet backend est construit avec Spring Boot en respectant les principes de 
 
 ## Prérequis
 
-- **Java** : JDK 11 ou supérieur
+- **Java** : JDK 17
 - **Maven** : 3.6 ou supérieur
 - **Base de données** : MySQL
 
@@ -29,7 +29,7 @@ DATABASE_URL=jdbc:mysql://localhost:3306/yourDatabase
 1. Cloner le dépôt :
     ```bash
     git clone https://github.com/TheoKennel/occ_poc_chat_projet13.git
-    cd back
+    cd api
     ```
 
 2. Installer les dépendances et construire le projet :
